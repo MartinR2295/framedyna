@@ -1,7 +1,7 @@
 // Width of the image format
-image_width = 550;
+image_width = 300;
 // Height of the image format
-image_length = 200;
+image_length = 150;
 // Tolerance of the image (normally the print is a few mm bigger)
 image_tolerance = 2;
 // Printing Tolerance (use 0.1 to 0.2mm)
@@ -147,7 +147,7 @@ difference() {
         if (x_insert_spacing > 5) {
             x_insert_spacing_mid = x_mid-y_spacing;
             for (i = [1:1:x_amount-1]) {
-                current_width = 20;
+                current_width = x_insert_spacing;
                 start_offset =
                             toleranced_insert_length+x_spacing+x_gap/2-current_width/2;
                 current_offset = start_offset + (toleranced_insert_length+x_gap)*(i-1);
