@@ -1,5 +1,5 @@
 // Width of the image format
-image_width = 350;
+image_width = 550;
 // Height of the image format
 image_length = 200;
 // Tolerance of the image (normally the print is a few mm bigger)
@@ -141,6 +141,21 @@ difference() {
         }
     }
 
+    // x spacing
+    union() {
+        x_insert_spacing = x_gap - x_spacing*2;
+        if (x_insert_spacing > 5) {
+            x_insert_spacing_mid = x_mid-y_spacing;
+            for (i = [1:1:x_amount-1]) {
+                current_width = 20;
+                start_offset =
+                            toleranced_insert_length+x_spacing+x_gap/2-current_width/2;
+                current_offset = start_offset + (toleranced_insert_length+x_gap)*(i-1);
+
+                translate([current_offset, y_spacing, 0]) cube([current_width, length-y_spacing*2, height]);
+            }
+        }
+    }
 
     // side inserts
     rotate([0,0,90]) translate([insert_side_offset-side_cube_insert_side_width,-insert_side_length,0]) FrexySideInsert(
